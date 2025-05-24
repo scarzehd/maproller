@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy8mafeu8lmof"]
+
+[ext_resource type="Script" uid="uid://d2fchxnaxv4rq" path="res://scripts/dice_bag_listing.gd" id="1_rd5el"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rd5el"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdq83"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evwrs"]
+
+[node name="DiceBagListing" type="MarginContainer"]
+script = ExtResource("1_rd5el")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rd5el")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="DiceSetColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DiceSetNameLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dice Set"
+
+[node name="CloseButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mdq83")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_evwrs")
+text = "X"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

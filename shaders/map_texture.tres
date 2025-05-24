@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dwlico842kjqu"]
+
+[sub_resource type="Gradient" id="Gradient_rpg36"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0.447059, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q1a23"]
+gradient = SubResource("Gradient_rpg36")
+
+[resource]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_q1a23")

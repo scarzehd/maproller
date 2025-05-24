@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dxgj65odxg2kd"]
+
+[ext_resource type="Shader" uid="uid://ora3b4bxsbfg" path="res://shaders/map.gdshader" id="1_jxje5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jxje5"]
+frequency = 0.045
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_73wmn"]
+noise = SubResource("FastNoiseLite_jxje5")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jxje5")
+shader_parameter/noise = SubResource("NoiseTexture2D_73wmn")
+shader_parameter/enabled = true

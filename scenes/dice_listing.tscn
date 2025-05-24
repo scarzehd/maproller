@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5a5m1oojpwl5"]
+
+[ext_resource type="Script" uid="uid://w45q1ldjgkl1" path="res://scripts/dice_listing.gd" id="1_hodiw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hodiw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rok"]
+
+[node name="DiceListing" type="VBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_hodiw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DiceSizeOption" type="OptionButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hodiw")
+selected = 0
+item_count = 6
+popup/item_0/text = "D4"
+popup/item_0/id = 0
+popup/item_1/text = "D6"
+popup/item_1/id = 1
+popup/item_2/text = "D8"
+popup/item_2/id = 2
+popup/item_3/text = "D10"
+popup/item_3/id = 3
+popup/item_4/text = "D12"
+popup/item_4/id = 4
+popup/item_5/text = "D20"
+popup/item_5/id = 5
+
+[node name="DiceSidesRange" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="DiceListingRemoveButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_60rok")
+text = "X"
+
+[connection signal="item_selected" from="HBoxContainer/DiceSizeOption" to="." method="_on_dice_size_option_item_selected"]
+[connection signal="value_changed" from="HBoxContainer/DiceSidesRange" to="." method="_on_dice_sides_range_value_changed"]

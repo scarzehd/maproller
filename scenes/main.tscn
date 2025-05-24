@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwn68jintrn5p"]
+
+[ext_resource type="Script" uid="uid://chnakbebxxa8f" path="res://scripts/camera_controller.gd" id="1_o5qli"]
+[ext_resource type="PlaneMesh" uid="uid://c1akjkflebdt4" path="res://meshes/main_plane.tres" id="1_sugp2"]
+[ext_resource type="Material" uid="uid://dwlico842kjqu" path="res://shaders/map_texture.tres" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dppety65icdit" path="res://scenes/ui.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://by6mari408cjc" path="res://scenes/map_generator.tscn" id="5_tbgi4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
+size = Vector3(11, 4.5, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+size = Vector3(0.2, 4.5, 11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jyhfs"]
+size = Vector3(10, 1, 10)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 3
+mesh = ExtResource("1_sugp2")
+surface_material_override/0 = ExtResource("2_jyhfs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+shape = SubResource("BoxShape3D_o5qli")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 0)
+shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("BoxShape3D_jyhfs")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
+cull_mask = 1048571
+projection = 1
+size = 10.0
+script = ExtResource("1_o5qli")
+
+[node name="UI" parent="." node_paths=PackedStringArray("export_viewport", "export_camera") instance=ExtResource("4_jyhfs")]
+export_viewport = NodePath("../SubViewport")
+export_camera = NodePath("../SubViewport/ExportCamera")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+canvas_cull_mask = 4294967294
+size = Vector2i(4000, 4000)
+render_target_update_mode = 4
+
+[node name="ExportCamera" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+cull_mask = 1047558
+projection = 1
+size = 15.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+follow_viewport_enabled = true
+
+[node name="MapGenerator" parent="." instance=ExtResource("5_tbgi4")]
