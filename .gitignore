@@ -2,5 +2,4 @@
 .godot/
 /android/
 # Project-specific ignores
-/build/
-!/build/deploy.sh
+build/
