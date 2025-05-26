@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="JSONObjectConfig" load_steps=8 format=3 uid="uid://d0ltn7dshhy86"]
+
+[ext_resource type="Script" uid="uid://d3cla2q847mp4" path="res://addons/godot-improved-json/serialize/object/instantiator/json_script_instantiator.gd" id="1_wtwqi"]
+[ext_resource type="Script" uid="uid://cjh4bprbara3m" path="res://addons/godot-improved-json/serialize/object/json_resource_file_instance.gd" id="2_pa7aw"]
+[ext_resource type="Script" uid="uid://rxn5tykwwuby" path="res://addons/godot-improved-json/serialize/object/json_property.gd" id="3_61wg6"]
+[ext_resource type="Script" uid="uid://bt1j2b5fpi7q4" path="res://addons/godot-improved-json/serialize/object/json_object_config.gd" id="4_rbsck"]
+[ext_resource type="Script" uid="uid://b78u6g7e51hne" path="res://scripts/preset.gd" id="5_ycuni"]
+
+[sub_resource type="Resource" id="Resource_awnjv"]
+script = ExtResource("1_wtwqi")
+gd_script = ExtResource("5_ycuni")
+metadata/_custom_type_script = "uid://d3cla2q847mp4"
+
+[sub_resource type="Resource" id="Resource_wtwqi"]
+script = ExtResource("3_61wg6")
+json_key = &"dice_sets"
+property_name = "dice_sets"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+deserialize_into = false
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[resource]
+script = ExtResource("4_rbsck")
+id = &"Preset"
+for_class = "Preset"
+set_for_class_by_script = ExtResource("5_ycuni")
+instantiator = SubResource("Resource_awnjv")
+properties = Array[ExtResource("3_61wg6")]([SubResource("Resource_wtwqi")])
+json_res_maintain_resource_instances = false
+json_res_use_resource_path = false
+json_res_include_properties_in_file_instances = false
+json_res_resource_file_instances = Array[ExtResource("2_pa7aw")]([])
+metadata/_custom_type_script = "uid://bt1j2b5fpi7q4"

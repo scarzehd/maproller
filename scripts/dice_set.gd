@@ -19,7 +19,7 @@ signal color_changed(new_color:Color)
 
 @export var influences_world_color:bool
 
-func _init(dice:Array[DiceData], name:String, color:Color = Color.RED, influences_world_color:bool = true) -> void:
+func _init(dice:Array[DiceData] = [], name:String = "New Dice Set", color:Color = Color.RED, influences_world_color:bool = true) -> void:
 	self.data = dice
 	self.name = name
 	self.color = color

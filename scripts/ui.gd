@@ -137,10 +137,24 @@ func _on_load_button_pressed() -> void:
 	%LoadPresetDialog.show()
 
 func _on_save_dialog_file_selected(path: String) -> void:
-	ResourceSaver.save(Preset.new(dice_sets), path)
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	
+	if not file:
+		return FileAccess.get_open_error()
+	
+	file.store_line(JSONSerialization.stringify(Preset.new(dice_sets)))
 
 func _on_load_dialog_file_selected(path: String) -> void:
-	var preset:Preset = ResourceLoader.load(path)
+	var file = FileAccess.open(path, FileAccess.READ)
+	
+	if not file:
+		return FileAccess.get_open_error()
+	
+	var preset:Preset = JSONSerialization.parse(file.get_line())
+	
+	for dice_set in preset.dice_sets:
+		for dice_data in dice_set.data:
+			dice_data.dice_set = dice_set
 	
 	if not preset:
 		return
