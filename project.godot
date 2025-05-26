@@ -11,21 +11,30 @@ config_version=5
 [application]
 
 config/name="MapRoller"
-config/version="0.2.1"
+config/version="0.3.0"
 run/main_scene="uid://cwn68jintrn5p"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
 MapGenerator="*res://scenes/map_generator.tscn"
+JSONSerialization="*res://addons/godot-improved-json/serialize/json_serialization.tscn"
 
 [display]
 
 window/size/initial_position_type=4
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-improved-json/plugin.cfg")
+
 [global_group]
 
 dice=""
+
+[improved_json]
+
+config/json_object_config_registry="uid://c20fgr1jpdmbm"
 
 [input]
 

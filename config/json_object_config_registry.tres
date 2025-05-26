@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="JSONObjectConfigRegistry" load_steps=6 format=3 uid="uid://c20fgr1jpdmbm"]
+
+[ext_resource type="Script" uid="uid://bt1j2b5fpi7q4" path="res://addons/godot-improved-json/serialize/object/json_object_config.gd" id="1_fxppv"]
+[ext_resource type="Resource" uid="uid://d0ltn7dshhy86" path="res://config/preset_config.tres" id="2_lmwdj"]
+[ext_resource type="Script" uid="uid://dd8asduixr7k" path="res://addons/godot-improved-json/serialize/object/json_object_config_registry.gd" id="3_hq57w"]
+[ext_resource type="Resource" uid="uid://dhhjn1vbfka1m" path="res://config/dice_set_config.tres" id="3_lcqeo"]
+[ext_resource type="Resource" uid="uid://yne0dbeby82v" path="res://config/dice_data_config.tres" id="4_s4tj2"]
+
+[resource]
+script = ExtResource("3_hq57w")
+_user_configs = Array[ExtResource("1_fxppv")]([ExtResource("2_lmwdj"), ExtResource("4_s4tj2"), ExtResource("3_lcqeo")])
+metadata/_custom_type_script = "uid://dd8asduixr7k"

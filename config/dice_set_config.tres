@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="JSONObjectConfig" load_steps=11 format=3 uid="uid://dhhjn1vbfka1m"]
+
+[ext_resource type="Script" uid="uid://d3cla2q847mp4" path="res://addons/godot-improved-json/serialize/object/instantiator/json_script_instantiator.gd" id="1_pkudu"]
+[ext_resource type="Script" uid="uid://rxn5tykwwuby" path="res://addons/godot-improved-json/serialize/object/json_property.gd" id="1_vs86b"]
+[ext_resource type="Script" uid="uid://bt1j2b5fpi7q4" path="res://addons/godot-improved-json/serialize/object/json_object_config.gd" id="2_4ufgq"]
+[ext_resource type="Script" uid="uid://cjh4bprbara3m" path="res://addons/godot-improved-json/serialize/object/json_resource_file_instance.gd" id="2_27gtg"]
+[ext_resource type="Script" uid="uid://m4kgs1m73fdg" path="res://scripts/dice_set.gd" id="5_bbr4q"]
+
+[sub_resource type="Resource" id="Resource_clit0"]
+script = ExtResource("1_pkudu")
+gd_script = ExtResource("5_bbr4q")
+metadata/_custom_type_script = "uid://d3cla2q847mp4"
+
+[sub_resource type="Resource" id="Resource_pkudu"]
+script = ExtResource("1_vs86b")
+json_key = &"data"
+property_name = "data"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+deserialize_into = false
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[sub_resource type="Resource" id="Resource_27gtg"]
+script = ExtResource("1_vs86b")
+json_key = &"name"
+property_name = "name"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[sub_resource type="Resource" id="Resource_bbr4q"]
+script = ExtResource("1_vs86b")
+json_key = &"color"
+property_name = "color"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[sub_resource type="Resource" id="Resource_fglrq"]
+script = ExtResource("1_vs86b")
+json_key = &"influences_world_color"
+property_name = "influences_world_color"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[resource]
+script = ExtResource("2_4ufgq")
+id = &"DiceSet"
+for_class = "DiceSet"
+set_for_class_by_script = ExtResource("5_bbr4q")
+instantiator = SubResource("Resource_clit0")
+properties = Array[ExtResource("1_vs86b")]([SubResource("Resource_pkudu"), SubResource("Resource_27gtg"), SubResource("Resource_bbr4q"), SubResource("Resource_fglrq")])
+json_res_maintain_resource_instances = false
+json_res_use_resource_path = false
+json_res_include_properties_in_file_instances = false
+json_res_resource_file_instances = Array[ExtResource("2_27gtg")]([])
+metadata/_custom_type_script = "uid://bt1j2b5fpi7q4"

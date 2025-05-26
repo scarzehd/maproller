@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="JSONObjectConfig" load_steps=9 format=3 uid="uid://yne0dbeby82v"]
+
+[ext_resource type="Script" uid="uid://rxn5tykwwuby" path="res://addons/godot-improved-json/serialize/object/json_property.gd" id="1_1ql51"]
+[ext_resource type="Script" uid="uid://cucslxulhp4vr" path="res://scripts/dice_data.gd" id="1_nymts"]
+[ext_resource type="Script" uid="uid://bt1j2b5fpi7q4" path="res://addons/godot-improved-json/serialize/object/json_object_config.gd" id="2_cjxa1"]
+[ext_resource type="Script" uid="uid://d3cla2q847mp4" path="res://addons/godot-improved-json/serialize/object/instantiator/json_script_instantiator.gd" id="2_tfk8h"]
+[ext_resource type="Script" uid="uid://cjh4bprbara3m" path="res://addons/godot-improved-json/serialize/object/json_resource_file_instance.gd" id="3_8i5da"]
+
+[sub_resource type="Resource" id="Resource_lvgch"]
+script = ExtResource("2_tfk8h")
+gd_script = ExtResource("1_nymts")
+metadata/_custom_type_script = "uid://d3cla2q847mp4"
+
+[sub_resource type="Resource" id="Resource_nymts"]
+script = ExtResource("1_1ql51")
+json_key = &"sides"
+property_name = "sides"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[sub_resource type="Resource" id="Resource_tfk8h"]
+script = ExtResource("1_1ql51")
+json_key = &"size"
+property_name = "size"
+enabled = true
+allow_null = true
+if_missing_in_object_serialize = 2
+if_missing_in_json = 2
+if_missing_in_object_deserialize = 2
+metadata/_custom_type_script = "uid://rxn5tykwwuby"
+
+[resource]
+script = ExtResource("2_cjxa1")
+id = &"DiceData"
+for_class = "DiceData"
+set_for_class_by_script = ExtResource("1_nymts")
+instantiator = SubResource("Resource_lvgch")
+properties = Array[ExtResource("1_1ql51")]([SubResource("Resource_nymts"), SubResource("Resource_tfk8h")])
+json_res_maintain_resource_instances = false
+json_res_use_resource_path = false
+json_res_include_properties_in_file_instances = false
+json_res_resource_file_instances = Array[ExtResource("3_8i5da")]([])
+metadata/_custom_type_script = "uid://bt1j2b5fpi7q4"
