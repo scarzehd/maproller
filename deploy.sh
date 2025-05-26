@@ -1,7 +1,9 @@
 #!/bin/env bash
 
 GODOT="$HOME/dev/Godot_v4.4.1-stable_linux.x86_64"
-BUTLER="$HOME/dev/build/butler"
+BUTLER="$HOME/dev/maproller/build/butler"
+PROJECT_PATH="$HOME/dev/maproller"
+BUILD_PATH="$PROJECT_PATH/build"
 
 if [ ! -f $GODOT ]; then
 	echo "Godot executable not found. Nothing has been changed."
@@ -13,6 +15,14 @@ if [ ! -f $BUTLER ]; then
 	exit
 fi
 
+read -p "Your build directory is set to ${BUILD_PATH}. Is that correct? [y/N]" -n 1 -r
+echo
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+	echo "Modify this script to set your build path and try again."
+	exit
+fi
+
 read -p "This will delete all current builds. Are you sure you want to continue? [y/N] " -n 1 -r
 echo
 
@@ -21,15 +31,13 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 	exit
 fi
 
-rm windows/*
-rm linux/*
+rm $BUILD_PATH/windows/*
+rm $BUILD_PATH/linux/*
 
-VERSION=$( cat ../project.godot | grep config/version | sed 's/config\/version="//' | sed 's/"//' )
+VERSION=$( cat $PROJECT_PATH/project.godot | grep config/version | sed 's/config\/version="//' | sed 's/"//' )
 
-PROJECT_PATH=$( pwd )/../
+$GODOT --headless --path $PROJECT_PATH --export-release "Windows" $BUILD_PATH/windows/maproller-${VERSION}.exe
+$GODOT --headless --path $PROJECT_PATH --export-release "Linux" $BUILD_PATH/linux/maproller-${VERSION}.x86_64
 
-$GODOT --headless --path $PROJECT_PATH --export-release "Windows" build/windows/maproller-${VERSION}.exe
-$GODOT --headless --path $PROJECT_PATH --export-release "Linux" build/linux/maproller-${VERSION}.x86_64
-
-$BUTLER push windows/ scarzehd/maproller:windows --userversion $VERSION
-$BUTLER push linux/ scarzehd/maproller:linux --userversion $VERSION
+$BUTLER push $BUILD_PATH/windows/ scarzehd/maproller:windows --userversion $VERSION
+$BUTLER push $BUILD_PATH/linux/ scarzehd/maproller:linux --userversion $VERSION
