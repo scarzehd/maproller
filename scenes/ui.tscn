@@ -90,9 +90,109 @@ grow_vertical = 2
 script = ExtResource("1_nt7q6")
 map_material = ExtResource("2_wm3ai")
 
+[node name="DicePanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = -127.0
+offset_right = 259.0
+offset_bottom = 127.0
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+
+[node name="MarginContainer" type="MarginContainer" parent="DicePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DicePanel/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DicePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+tooltip_text = "Export Preset"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yev5y")
+icon = ExtResource("2_yev5y")
+expand_icon = true
+
+[node name="LoadButton" type="Button" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+tooltip_text = "Import Preset"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yev5y")
+icon = ExtResource("3_gdt2y")
+expand_icon = true
+
+[node name="Label" type="Label" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dice"
+horizontal_alignment = 1
+
+[node name="PlusButton" type="Button" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+tooltip_text = "New dice setw"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nt7q6")
+text = "+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DiceBagsContainer" type="VBoxContainer" parent="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DicePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RollButton" type="Button" parent="DicePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xlq6p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yev5y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdt2y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt7q6")
+text = "ROLL"
+
+[node name="ResetButton" type="Button" parent="DicePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x4jx1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wm3ai")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8dubc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_x4jx1")
+text = "RESET"
+
 [node name="DiceSetMenu" parent="." instance=ExtResource("2_x4jx1")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 285.0
+offset_right = 467.0
+grow_horizontal = 1
+mouse_force_pass_scroll_events = false
 
 [node name="SavePresetDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -130,15 +230,13 @@ offset_bottom = 43.0
 grow_horizontal = 2
 
 [node name="File" type="PopupMenu" parent="MenuBar"]
-item_count = 4
+item_count = 3
 item_0/text = "Save"
 item_0/id = 0
 item_1/text = "Open"
 item_1/id = 1
 item_2/text = "Export"
 item_2/id = 2
-item_3/text = "Project Settings"
-item_3/id = 3
 
 [node name="SaveMapDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -161,99 +259,11 @@ access = 2
 filters = PackedStringArray("*.png")
 use_native_dialog = true
 
-[node name="DicePanel" type="Window" parent="."]
-unique_name_in_owner = true
-title = "Dice Sets"
-position = Vector2i(25, 200)
-size = Vector2i(202, 254)
-transient = true
-
-[node name="DicePanel" type="PanelContainer" parent="DicePanel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_force_pass_scroll_events = false
-
-[node name="MarginContainer" type="MarginContainer" parent="DicePanel/DicePanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DicePanel/DicePanel/MarginContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SaveButton" type="Button" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-tooltip_text = "Export Preset"
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yev5y")
-icon = ExtResource("2_yev5y")
-expand_icon = true
-
-[node name="LoadButton" type="Button" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-tooltip_text = "Import Preset"
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yev5y")
-icon = ExtResource("3_gdt2y")
-expand_icon = true
-
-[node name="Label" type="Label" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Dice"
-horizontal_alignment = 1
-
-[node name="PlusButton" type="Button" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-tooltip_text = "New dice setw"
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nt7q6")
-text = "+"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="DiceBagsContainer" type="VBoxContainer" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="RollButton" type="Button" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_xlq6p")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yev5y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gdt2y")
-theme_override_styles/normal = SubResource("StyleBoxFlat_nt7q6")
-text = "ROLL"
-
-[node name="ResetButton" type="Button" parent="DicePanel/DicePanel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x4jx1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wm3ai")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8dubc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_x4jx1")
-text = "RESET"
-
+[connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PlusButton" to="." method="_on_plus_button_pressed"]
+[connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/HBoxContainer/RollButton" to="." method="roll"]
+[connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="reset"]
 [connection signal="file_selected" from="SavePresetDialog" to="." method="_on_save_dialog_file_selected"]
 [connection signal="file_selected" from="LoadPresetDialog" to="." method="_on_load_dialog_file_selected"]
 [connection signal="index_pressed" from="Mode" to="." method="_on_mode_index_pressed"]
@@ -261,8 +271,3 @@ text = "RESET"
 [connection signal="file_selected" from="SaveMapDialog" to="." method="_on_save_map_dialog_file_selected"]
 [connection signal="file_selected" from="LoadMapDialog" to="." method="_on_load_map_dialog_file_selected"]
 [connection signal="file_selected" from="ExportMapDialog" to="." method="_on_export_map_dialog_file_selected"]
-[connection signal="pressed" from="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="DicePanel/DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PlusButton" to="." method="_on_plus_button_pressed"]
-[connection signal="pressed" from="DicePanel/DicePanel/MarginContainer/VBoxContainer/HBoxContainer/RollButton" to="." method="roll"]
-[connection signal="pressed" from="DicePanel/DicePanel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="reset"]

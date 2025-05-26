@@ -1,4 +1,4 @@
-extends Window
+extends PanelContainer
 class_name DiceSetMenu
 
 @onready var name_edit = %DiceSetName
