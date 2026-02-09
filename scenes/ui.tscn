@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://dppety65icdit"]
+[gd_scene load_steps=17 format=3 uid="uid://dppety65icdit"]
 
 [ext_resource type="Script" uid="uid://bni053crskbi8" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="Material" uid="uid://dwlico842kjqu" path="res://shaders/map_texture.tres" id="2_wm3ai"]
 [ext_resource type="PackedScene" uid="uid://dy0vkcxgaln1" path="res://scenes/dice_set_menu.tscn" id="2_x4jx1"]
 [ext_resource type="Texture2D" uid="uid://77fcuw8lw8ri" path="res://save.svg" id="2_yev5y"]
 [ext_resource type="Texture2D" uid="uid://cs68odl2a81ds" path="res://open-folder.svg" id="3_gdt2y"]
+[ext_resource type="PackedScene" uid="uid://bewatvu8jpjv8" path="res://scenes/project_settings_window.tscn" id="6_8dubc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yev5y"]
 
@@ -209,17 +210,8 @@ access = 2
 filters = PackedStringArray("*.mrpreset")
 use_native_dialog = true
 
-[node name="Mode" type="PopupMenu" parent="."]
-item_count = 2
-item_0/text = "Roll"
-item_0/checkable = 2
-item_0/checked = true
-item_0/id = 0
-item_1/text = "Edit"
-item_1/checkable = 2
-item_1/id = 1
-
 [node name="MenuBar" type="MenuBar" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -230,13 +222,25 @@ offset_bottom = 43.0
 grow_horizontal = 2
 
 [node name="File" type="PopupMenu" parent="MenuBar"]
-item_count = 3
+item_count = 4
 item_0/text = "Save"
 item_0/id = 0
 item_1/text = "Open"
 item_1/id = 1
 item_2/text = "Export"
 item_2/id = 2
+item_3/text = "Project Settings"
+item_3/id = 3
+
+[node name="Mode" type="PopupMenu" parent="MenuBar"]
+item_count = 2
+item_0/text = "Roll"
+item_0/checkable = 2
+item_0/checked = true
+item_0/id = 0
+item_1/text = "Edit"
+item_1/checkable = 2
+item_1/id = 1
 
 [node name="SaveMapDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -259,6 +263,10 @@ access = 2
 filters = PackedStringArray("*.png")
 use_native_dialog = true
 
+[node name="ProjectSettingsWindow" parent="." instance=ExtResource("6_8dubc")]
+unique_name_in_owner = true
+visible = false
+
 [connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PlusButton" to="." method="_on_plus_button_pressed"]
@@ -266,8 +274,8 @@ use_native_dialog = true
 [connection signal="pressed" from="DicePanel/MarginContainer/VBoxContainer/HBoxContainer/ResetButton" to="." method="reset"]
 [connection signal="file_selected" from="SavePresetDialog" to="." method="_on_save_dialog_file_selected"]
 [connection signal="file_selected" from="LoadPresetDialog" to="." method="_on_load_dialog_file_selected"]
-[connection signal="index_pressed" from="Mode" to="." method="_on_mode_index_pressed"]
 [connection signal="index_pressed" from="MenuBar/File" to="." method="_on_file_index_pressed"]
+[connection signal="index_pressed" from="MenuBar/Mode" to="." method="_on_mode_index_pressed"]
 [connection signal="file_selected" from="SaveMapDialog" to="." method="_on_save_map_dialog_file_selected"]
 [connection signal="file_selected" from="LoadMapDialog" to="." method="_on_load_map_dialog_file_selected"]
 [connection signal="file_selected" from="ExportMapDialog" to="." method="_on_export_map_dialog_file_selected"]

@@ -9,6 +9,8 @@ uniform sampler2D colors : source_color;
 
 uniform sampler2D noise;
 
+uniform vec3 background_color = vec3(0.0f, 0.1f, 1.0f);
+
 uniform bool enabled;
 
 float handle_point(vec2 point, float radius) {
@@ -36,7 +38,7 @@ void fragment() {
 	//
 	float weight_sum = 0.0f;
 	vec3 color_sum = vec3(0.0f, 0.0f, 0.0f);
-	vec3 color = vec3(0.0f, 0.1f, 1.0f);
+	vec3 color = background_color;
 
 	for (int i = 0; i < size.x; i++) {
 		vec4 texel = texelFetch(positions, ivec2(i, 0), 0);
@@ -47,7 +49,7 @@ void fragment() {
 
 		magnitude += handle_point(point, radius);
 
-		if (texel.b >= 1.0f) {
+		if (texel.b > 0.0f) {
 			point_color = texelFetch(colors, ivec2(i, 0), 0).rgb;
 
 			float dist = distance(world_pos.xz, point);

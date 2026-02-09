@@ -12,4 +12,5 @@ noise = SubResource("FastNoiseLite_jxje5")
 render_priority = 0
 shader = ExtResource("1_jxje5")
 shader_parameter/noise = SubResource("NoiseTexture2D_73wmn")
+shader_parameter/background_color = Vector3(0, 0.1, 1)
 shader_parameter/enabled = true

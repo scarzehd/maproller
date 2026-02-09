@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=3 uid="uid://bewatvu8jpjv8"]
+
+[ext_resource type="Script" uid="uid://eu8lnuy664fb" path="res://scripts/project_settings_window.gd" id="1_4ivtl"]
+
+[node name="ProjectSettingsWindow" type="Window"]
+title = "Project Settings"
+initial_position = 2
+size = Vector2i(350, 400)
+transient = true
+script = ExtResource("1_4ivtl")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ExportResolution" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Export Resolution"
+
+[node name="VectorProperty" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "X"
+horizontal_alignment = 1
+
+[node name="ExportResolutionX" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+suffix = "px"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty/HBoxContainer2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "Y"
+horizontal_alignment = 1
+
+[node name="ExportResolutionY" type="SpinBox" parent="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+suffix = "px"
+
+[node name="MapBackgroundColor" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MapBackgroundColor"]
+layout_mode = 2
+text = "Map Background Color"
+
+[node name="MapBackgroundColorPickerButton" type="ColorPickerButton" parent="PanelContainer/MarginContainer/VBoxContainer/MapBackgroundColor"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty/HBoxContainer/ExportResolutionX" to="." method="_on_export_resolution_x_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/ExportResolution/VectorProperty/HBoxContainer2/ExportResolutionY" to="." method="_on_export_resolution_y_value_changed"]
+[connection signal="color_changed" from="PanelContainer/MarginContainer/VBoxContainer/MapBackgroundColor/MapBackgroundColorPickerButton" to="." method="_on_map_background_color_changed"]

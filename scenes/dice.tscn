@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://skpi7y7jmgyd"]
+[gd_scene load_steps=3 format=3 uid="uid://skpi7y7jmgyd"]
 
 [ext_resource type="Script" uid="uid://c1beio5wy1mt8" path="res://scripts/dice.gd" id="1_27nyo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_27nyo"]
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Dice" type="RigidBody3D" groups=["dice"]]
 inertia = Vector3(0.01, 0.01, 0.01)
@@ -28,6 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "0"
+label_settings = SubResource("LabelSettings_27nyo")
 horizontal_alignment = 1
 vertical_alignment = 1
 

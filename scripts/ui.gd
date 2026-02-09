@@ -23,7 +23,7 @@ var mode := 0 :
 		toggle_roll_state(value == 0)
 		toggle_edit_state(value == 1)
 
-#@onready var mode_menu := $MenuBar/Mode
+@onready var mode_menu := %MenuBar/Mode
 
 func toggle_roll_state(value:bool):
 	if value:
@@ -39,6 +39,7 @@ func toggle_edit_state(value:bool): # TODO change this once edit mode is done
 
 func _ready() -> void:
 	mode = 0
+	MapProjectSettings.register_setting_listener(MapProjectSettings.EXPORT_RESOLUTION, func(value): update_outlines())
 
 func _enter_tree() -> void:
 	UI.instance = self
@@ -173,16 +174,16 @@ func load_preset(preset:Preset):
 	for dice_set in new_dice_sets:
 		create_dice_set_listing(dice_set)
 
-#func _on_mode_index_pressed(index: int) -> void:
-	#if index == mode:
-		#return
-	#
-	#mode = index
-	#
-	#for i in range(mode_menu.item_count):
-		#mode_menu.set_item_checked(i, false)
-	#
-	#mode_menu.set_item_checked(index, true)
+func _on_mode_index_pressed(index: int) -> void:
+	if index == mode:
+		return
+	
+	mode = index
+	
+	for i in range(mode_menu.item_count):
+		mode_menu.set_item_checked(i, false)
+	
+	mode_menu.set_item_checked(index, true)
 
 
 func _on_file_index_pressed(index: int) -> void:
@@ -193,6 +194,8 @@ func _on_file_index_pressed(index: int) -> void:
 			%LoadMapDialog.show()
 		2:
 			%ExportMapDialog.show()
+		3:
+			%ProjectSettingsWindow.show()
 
 
 func _on_save_map_dialog_file_selected(path: String) -> void:
@@ -206,8 +209,6 @@ func _on_save_map_dialog_file_selected(path: String) -> void:
 	
 	MapSaver.save_map(path, dice_filtered)
 
-
-
 func _on_load_map_dialog_file_selected(path: String) -> void:
 	load_preset(await MapSaver.load_map(path))
 
@@ -216,9 +217,6 @@ func _on_export_map_dialog_file_selected(path: String) -> void:
 	export_image(path)
 
 func export_image(path:String) -> void:
-	
-	print(export_camera.get_viewport())
-	
 	var dice := get_tree().get_nodes_in_group("dice")
 	
 	var labels:Array
@@ -226,6 +224,8 @@ func export_image(path:String) -> void:
 	var label_settings := LabelSettings.new()
 	
 	label_settings.font_size = 40
+	label_settings.outline_size = 8
+	label_settings.outline_color = Color.BLACK
 	
 	for die in dice:
 		var label = die.get_node("Label").duplicate()

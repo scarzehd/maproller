@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c05op1dvhukg3"]
+
+[ext_resource type="Script" uid="uid://vinw8vv51umt" path="res://scripts/vector_property.gd" id="1_v28yp"]
+
+[node name="VectorProperty" type="VBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_v28yp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "X"
+horizontal_alignment = 1
+
+[node name="XInput" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+suffix = "px"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "Y"
+horizontal_alignment = 1
+
+[node name="YInput" type="SpinBox" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+suffix = "px"
+
+[connection signal="value_changed" from="HBoxContainer/XInput" to="." method="_on_x_input_value_changed"]
